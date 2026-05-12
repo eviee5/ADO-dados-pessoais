@@ -16,9 +16,14 @@
 
 	<developers>
 		<developer>
-			<id>ftsuda-senac</id>
-			<name>Fernando Tsuda</name>
-			<email>fernando.tsuda@sp.senac.br</email>
+			<id>eviee5</id>
+			<name>Hevellyn Rayane Silva Sousa</name>
+			<email>hevellyn.rssousa@senacsp.com.br</email>
+		</developer>
+		<developer>
+			<id>BressaniEND</id>
+			<name>Matheus Soares Bressani</name>
+			<email>matheus.sbressani@senacsp.com.br</email>
 		</developer>
 	</developers>
 	<!-- Versão do TADS Spring Initializr: 1.1.6 -->
@@ -84,6 +89,16 @@
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-h2console</artifactId>
+		</dependency>
+		<!-- Spring Security: filtros de autenticação e autorização para a API -->
+		<dependency>
+ 			<groupId>org.springframework.boot</groupId>
+ 			<artifactId>spring-boot-starter-security</artifactId>
+		</dependency>
+		<!-- OAuth2 Resource Server: inclui a biblioteca Nimbus JOSE+JWT usada pelo JwtService -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-oauth2-resource-server</artifactId>
 		</dependency>
 	</dependencies>
 
