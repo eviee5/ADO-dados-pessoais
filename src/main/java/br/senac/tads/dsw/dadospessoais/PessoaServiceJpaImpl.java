@@ -98,17 +98,17 @@ import jakarta.annotation.PostConstruct;
         return toDto(salva);
      }
 
- @Override
- @Transactional
- public void removerPessoa(String username) {
-    // Versão imperativa — veja o Anexo A para a versão equivalente com orElseThrow()
-    Optional<PessoaEntity> optEntity = pessoaRepository.findByUsername(username);
-    if (optEntity.isEmpty()) {
-        throw new NaoEncontradoException("Pessoa " + username + " não encontrada");
+    @Override
+    @Transactional
+    public void removerPessoa(String username) {
+        // Versão imperativa — veja o Anexo A para a versão equivalente com orElseThrow()
+        Optional<PessoaEntity> optEntity = pessoaRepository.findByUsername(username);
+        if (optEntity.isEmpty()) {
+            throw new NaoEncontradoException("Pessoa " + username + " não encontrada");
+        }
+        PessoaEntity entity = optEntity.get();
+        pessoaRepository.delete(entity); // DELETE no banco (cascade remove os conhecimentos também)
     }
-    PessoaEntity entity = optEntity.get();
-    pessoaRepository.delete(entity); // DELETE no banco (cascade remove os conhecimentos também)
- }
 
         // =========================================================
         // Métodos auxiliares: conversão entre Entity e DTO
@@ -151,14 +151,14 @@ import jakarta.annotation.PostConstruct;
             return entity;
         }
 
-        @Override
-@Transactional(readOnly = true)
-public List<PessoaDto> buscarPessoas(String termo) {
- // Versão imperativa — veja o Anexo A para a versão equivalente com streams
- List<PessoaDto> resultado = new ArrayList<>();
- for (PessoaEntity entity : pessoaRepository.buscarPorTermo(termo)) {
- resultado.add(toDto(entity));
- }
- return resultado;
-}
+    @Override
+    @Transactional(readOnly = true)
+    public List<PessoaDto> buscarPessoas(String termo) {
+    // Versão imperativa — veja o Anexo A para a versão equivalente com streams
+    List<PessoaDto> resultado = new ArrayList<>();
+    for (PessoaEntity entity : pessoaRepository.buscarPorTermo(termo)) {
+    resultado.add(toDto(entity));
     }
+    return resultado;
+    }
+        }
